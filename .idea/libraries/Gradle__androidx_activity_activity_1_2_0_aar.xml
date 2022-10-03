@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.activity:activity:1.2.0@aar" type="AndroidModuleLibraryType">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1c7ff6d6ed0195d9be4b5ceb6dcde4dc/transformed/jetified-activity-1.2.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/1c7ff6d6ed0195d9be4b5ceb6dcde4dc/transformed/jetified-activity-1.2.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

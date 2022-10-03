@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/pichere.iml" filepath="$PROJECT_DIR$/pichere.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/pichere_android.iml" filepath="$PROJECT_DIR$/android/pichere_android.iml" />
+    </modules>
+  </component>
+</project>
