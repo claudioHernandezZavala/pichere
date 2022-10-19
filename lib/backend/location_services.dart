@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-/**
- * This function retrieves the gps position of the user
- */
+/// This function retrieves the gps position of the user
 Future<Position> determineCurrentPosition() async {
   bool serviceEnabled;
   LocationPermission permission;

@@ -24,7 +24,6 @@ class _PickImageScreenState extends State<PickImageScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loading = true;
     initAsync();

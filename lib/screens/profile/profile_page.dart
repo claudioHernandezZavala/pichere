@@ -51,6 +51,7 @@ class _UserProfileState extends State<UserProfile> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              //contains the profile picture
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -72,26 +73,28 @@ class _UserProfileState extends State<UserProfile> {
                 ],
               ),
               const SizedBox(
+                height: 20,
+              ),
+              const Text("Username"),
+              const SizedBox(
                 height: 35,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    child: Column(
-                      children: const [
-                        Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        ),
-                        Text("56"),
-                        Text(
-                          "Likes",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                  Column(
+                    children: const [
+                      Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                      ),
+                      Text("56"),
+                      Text(
+                        "Likes",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                   Container(
                     child: Column(

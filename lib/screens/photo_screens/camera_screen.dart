@@ -27,7 +27,6 @@ class _CameraScreenState extends State<CameraScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
     controllerToIncreasingCurve =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
     controllerToDecreasingCurve =
@@ -71,7 +70,6 @@ class _CameraScreenState extends State<CameraScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     controllerToIncreasingCurve.dispose();
     controllerToDecreasingCurve.dispose();
     super.dispose();

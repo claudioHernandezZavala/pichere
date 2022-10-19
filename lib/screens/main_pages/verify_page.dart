@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pichere/backend/auth_services.dart';
 import 'package:pichere/screens/main_pages/home_screen.dart';
 import 'package:pichere/utils/app_colors.dart';
 import 'package:pichere/widgets/alerts/alerts.dart';
@@ -20,12 +22,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     FirebaseAuth.instance.currentUser?.reload();
     accountVerified = FirebaseAuth.instance.currentUser!.emailVerified;
-    print(accountVerified);
-    print(FirebaseAuth.instance.currentUser!.email);
     if (accountVerified == false) {
       sendVerification();
       timer = Timer.periodic(const Duration(seconds: 3), (timer) {
@@ -41,6 +40,15 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       accountVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     });
     if (accountVerified) {
+      ///check if the user data exist or is written in the database, if it is not it calls the function write user data
+      bool userDataWritten = await FirebaseFirestore.instance
+          .collection("users/")
+          .doc("${FirebaseAuth.instance.currentUser?.uid}")
+          .snapshots()
+          .isEmpty;
+      if (!userDataWritten) {
+        AuthServices(FirebaseAuth.instance).writeUserData();
+      }
       timer?.cancel();
     }
   }
@@ -62,7 +70,6 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     timer?.cancel();
     super.dispose();
   }
@@ -84,7 +91,17 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Image.asset("assets/images/newyorklogin.png"),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Image.asset(
+                        "assets/images/fast-food.png",
+                        width: 100,
+                        height: 100,
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
                       Container(
                         width: 300,
                         height: 250,

@@ -25,7 +25,7 @@ class _SavePostScreenState extends State<SavePostScreen> {
             ),
           ),
           favs == 0
-              ? Container(
+              ? SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: Column(
@@ -37,10 +37,10 @@ class _SavePostScreenState extends State<SavePostScreen> {
                         width: 100,
                         height: 100,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 25,
                       ),
-                      Text(
+                      const Text(
                         "Not saved post yet",
                         style: TextStyle(
                             color: Colors.black,

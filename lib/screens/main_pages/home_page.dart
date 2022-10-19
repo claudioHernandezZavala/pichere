@@ -16,11 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  void initState() {
-    // TODO: implement initState
-
-    super.initState();
-  }
+  void initState() => super.initState();
 
   @override
   Widget build(BuildContext context) {
@@ -57,15 +53,15 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black,
                       ),
                     ),
-                    IconButton(
-                      onPressed: () async {
-                        await FirebaseAuth.instance.signOut();
-                      },
-                      icon: const Icon(
-                        Icons.search_rounded,
-                        color: Colors.red,
-                      ),
-                    ),
+                    // IconButton(
+                    //   onPressed: () async {
+                    //     await FirebaseAuth.instance.signOut();
+                    //   },
+                    //   icon: const Icon(
+                    //     Icons.search_rounded,
+                    //     color: Colors.red,
+                    //   ),
+                    // ),
                   ],
                 )
               ];
@@ -116,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                           child: Stack(
                             children: [
                               Image.network(
-                                postsTest[index].imgUrl,
+                                postsTest[index].imgUrls[0],
                                 width: double.infinity,
                                 height: double.infinity,
                                 fit: BoxFit.fill,
@@ -160,17 +156,14 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.red,
                                           ),
                                           Row(
-                                            children: [
-                                              const Icon(
+                                            children: const [
+                                              Icon(
                                                 Icons.comment,
                                                 color: Colors.blue,
                                               ),
-                                              const SizedBox(
+                                              SizedBox(
                                                 width: 5,
                                               ),
-                                              Text(postsTest[index]
-                                                  .comments
-                                                  .toString())
                                             ],
                                           ),
                                           Row(

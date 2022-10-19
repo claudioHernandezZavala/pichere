@@ -105,6 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               if (val!.isEmpty) {
                                 return "Please provide a password.";
                               }
+                              return null;
                             },
                             decoration: InputDecoration(
                                 hintText: "Password",
@@ -158,25 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 )),
                           ),
                           const SizedBox(height: 15),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: InkWell(
-                              //function to reset password
-                              onTap: () {},
-                              child: RichText(
-                                textAlign: TextAlign.end,
-                                text: const TextSpan(
-                                    text: "Forgot password?",
-                                    style: TextStyle(color: Colors.black),
-                                    children: [
-                                      TextSpan(
-                                        text: " Click here",
-                                        style: TextStyle(color: Colors.blue),
-                                      ),
-                                    ]),
-                              ),
-                            ),
-                          ),
+
                           const SizedBox(
                             height: 15,
                           ),

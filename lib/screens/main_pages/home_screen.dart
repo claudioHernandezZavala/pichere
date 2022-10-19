@@ -26,18 +26,10 @@ class _HomeScreenState extends State<HomeScreen>
     const UserProfile()
   ];
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  void initState() => super.initState();
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _floatingButtons = [
-      homePageButton(context),
-      CategoryButton(context)
-    ];
-
     return Scaffold(
       backgroundColor: AppColors.color1Background,
       body: screens[_index],

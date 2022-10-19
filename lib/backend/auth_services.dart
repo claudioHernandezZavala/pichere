@@ -1,5 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -15,8 +15,8 @@ class AuthServices with ChangeNotifier {
       required String password,
       required BuildContext context}) async {
     try {
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
 
       confirmationSnackBar(message: "User created", context: context);
     } on FirebaseAuthException catch (e) {
@@ -46,10 +46,8 @@ class AuthServices with ChangeNotifier {
 
   ///login or register with google
   Future<UserCredential?> googleSignIn(BuildContext context) async {
-    User? user;
     GoogleSignIn googleSignIn = GoogleSignIn();
     googleSignIn.signOut();
-    bool isNew = false;
     UserCredential? userCredential;
 
     final GoogleSignInAccount? googleSignInAccount =
@@ -63,12 +61,12 @@ class AuthServices with ChangeNotifier {
 
       try {
         userCredential = await _auth.signInWithCredential(credential);
-        user = userCredential.user;
 
         if (userCredential.additionalUserInfo!.isNewUser) {
-          isNew = true;
+          // isNew = true;
+          await writeUserData();
         } else {
-          isNew = false;
+          //isNew = false;
         }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
@@ -108,5 +106,25 @@ class AuthServices with ChangeNotifier {
   }
 
   ///facebook sign in and sign up
+  ///Write data of user in database when registered
+  Future<void> writeUserData() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null && currentUser.emailVerified) {
+      var userCollection = FirebaseFirestore.instance.collection("users/");
 
+      var userData = {
+        "uid": currentUser.uid,
+        'username': "User",
+        "name": currentUser.displayName,
+        'token': await currentUser.getIdToken(),
+        'email': currentUser.email,
+        'posts': 0,
+        'likes': 0,
+        'profilePicUrl': currentUser.photoURL ?? "null",
+        'favorites': [],
+        'interest': []
+      };
+      await userCollection.doc("${currentUser.uid}").set(userData);
+    }
+  }
 }
